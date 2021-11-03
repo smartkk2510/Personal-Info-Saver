@@ -40,7 +40,7 @@ const newcontent = (person) => {
 </div>`;
 };
 const addContent = async () => {
-  let data = await fetch("http://localhost:3000/read-info");
+  let data = await fetch("https://personal-info-saver.herokuapp.com/read-info");
   peopleSArray = await data.json();
   peopleSArray.forEach((person) => {
     document
@@ -51,7 +51,7 @@ const addContent = async () => {
 const deleteCard = async (event) => {
   const targetID = event.target.getAttribute("name");
   //console.log(targetID);
-  await fetch(`http://localhost:3000/delete-info/${targetID}`, {
+  await fetch(`https://personal-info-saver.herokuapp.com/delete-info/${targetID}`, {
     method: "DELETE",
   });
   // addContent();
@@ -61,7 +61,7 @@ const search = async () => {
   const value = document.getElementById("searchP").value;
   document.getElementById("root").innerHTML = "";
   // console.log(value);
-  let data = await fetch(`http://localhost:3000/read-info/${value}`);
+  let data = await fetch(`https://personal-info-saver.herokuapp.com/read-info/${value}`);
   person = await data.json();
   // console.log(person);
   if (value != "") {
@@ -118,7 +118,7 @@ const saveCard = async (e) => {
   };
   // console.log(data);
   // console.log(e.getAttribute("name"));
-  await fetch(`http://localhost:3000/update-info/${e.getAttribute("name")}`, {
+  await fetch(`https://personal-info-saver.herokuapp.com/update-info/${e.getAttribute("name")}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
